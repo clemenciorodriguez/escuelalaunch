@@ -8,10 +8,10 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     permissions:
-      contents: write     # necesario para hacer git push al repo
+      contents: write
 
     steps:
       - name: Checkout repo
@@ -22,13 +22,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run scraper
+      - name: 1 — Scraper (proyectos Launchpool)
         run: python scraper.py
 
-      - name: Commit y push data/projects.json
+      - name: 2 — Paper Bot (detecta listings y registra compras ficticias)
+        run: python bot_paper.py
+
+      - name: 3 — Tracker (actualiza precios y P&L)
+        run: python tracker.py
+
+      - name: Commit y push data/
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/projects.json
-          git diff --cached --quiet || git commit -m "update: projects $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git add data/
+          git diff --cached --quiet || git commit -m "update: $(date -u '+%Y-%m-%d %H:%M') UTC"
           git push
