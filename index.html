@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escuela Launch — Binance Monitor</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0f;--surface:#111118;--surface2:#18181f;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0f0f5;--muted:#6b6b80;
+  --accent:#f0b90b;--accent2:#ffd84d;
+  --green:#22d47a;--red:#ff5252;--blue:#4f9eff;--purple:#a78bfa;
+  --mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+
+/* HEADER */
+header{border-bottom:1px solid var(--border);padding:1.1rem 2rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:rgba(10,10,15,0.93);backdrop-filter:blur(14px);z-index:100}
+.logo{width:38px;height:38px;background:var(--accent);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo svg{width:21px;height:21px}
+.htitle{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:-.01em}
+.hsub{font-size:11px;color:var(--muted);margin-top:1px}
+.hright{margin-left:auto;display:flex;align-items:center;gap:10px}
+.live-pill{display:flex;align-items:center;gap:5px;font-size:10px;font-family:var(--mono);font-weight:700;color:var(--green);background:rgba(34,212,122,.08);border:1px solid rgba(34,212,122,.2);padding:3px 9px;border-radius:99px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+#htime{font-size:10px;color:var(--muted);font-family:var(--mono)}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 2rem;background:var(--surface)}
+.tab{padding:.75rem 1.25rem;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:hover:not(.active){color:var(--text)}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:2rem}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* SECTION */
+.sec-header{display:flex;align-items:baseline;gap:10px;margin-bottom:1.1rem}
+.sec-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sec-count{font-family:var(--mono);font-size:10px;color:var(--accent);background:rgba(240,185,11,.1);border:1px solid rgba(240,185,11,.2);padding:1px 7px;border-radius:99px}
+
+/* EMPTY */
+.empty{background:var(--surface);border:1px dashed var(--border2);border-radius:14px;padding:2.5rem 2rem;text-align:center;color:var(--muted);font-size:13px;margin-bottom:2rem}
+.empty-ico{font-size:28px;margin-bottom:.6rem;opacity:.35}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-bottom:2rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;transition:border-color .18s,transform .15s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .2s}
+.card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.card:hover::before,.card.hot::before{opacity:1}
+.card.hot{border-color:rgba(240,185,11,.3);background:linear-gradient(135deg,#111118,#16140a)}
+.ctop{display:flex;align-items:center;gap:10px;margin-bottom:.9rem}
+.timg{width:40px;height:40px;border-radius:50%;object-fit:cover;background:var(--surface2);border:1px solid var(--border);flex-shrink:0}
+.tfb{width:40px;height:40px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0}
+.cname{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.ctype{font-size:11px;color:var(--muted);margin-top:1px}
+.sbadge{margin-left:auto;font-size:9px;font-family:var(--mono);font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 7px;border-radius:99px;flex-shrink:0}
+.s-dist{background:rgba(79,158,255,.1);color:var(--blue);border:1px solid rgba(79,158,255,.2)}
+.s-ended{background:rgba(107,107,128,.1);color:var(--muted);border:1px solid rgba(107,107,128,.2)}
+.s-active,.s-ongoing{background:rgba(34,212,122,.1);color:var(--green);border:1px solid rgba(34,212,122,.2)}
+.s-upcoming{background:rgba(240,185,11,.1);color:var(--accent);border:1px solid rgba(240,185,11,.2)}
+.crow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12px;border-top:1px solid var(--border)}
+.crow:first-child{border-top:1px solid var(--border)}
+.clabel{color:var(--muted)}
+.cval{font-family:var(--mono);font-size:11px;color:var(--text);text-align:right}
+.cval.gold{color:var(--accent)}
+.pools{display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-size:9px;font-family:var(--mono);padding:2px 5px;border-radius:4px;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.cbtns{display:flex;gap:7px;margin-top:.9rem}
+.btn{flex:1;padding:7px 0;font-size:11px;font-family:var(--mono);font-weight:700;letter-spacing:.03em;border-radius:7px;cursor:pointer;transition:all .13s;text-align:center;text-decoration:none;display:block;border:1px solid}
+.btn-chart{background:rgba(240,185,11,.1);color:var(--accent);border-color:rgba(240,185,11,.25)}
+.btn-chart:hover{background:rgba(240,185,11,.2)}
+.btn-ann{background:transparent;color:var(--muted);border-color:var(--border)}
+.btn-ann:hover{color:var(--text);border-color:var(--border2)}
+
+/* LEGEND */
+.legend{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1.1rem 1.4rem;margin-bottom:2.5rem}
+.leg-title{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.65rem}
+.leg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.5rem}
+.leg-item{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--muted);line-height:1.5}
+.leg-dot{width:6px;height:6px;border-radius:50%;margin-top:5px;flex-shrink:0}
+
+/* PORTFOLIO STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:2rem}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:.9rem 1rem}
+.stat-label{font-size:11px;color:var(--muted);margin-bottom:.35rem;font-family:var(--mono)}
+.stat-val{font-size:22px;font-weight:600;font-family:var(--mono);letter-spacing:-.02em}
+.stat-val.pos{color:var(--green)}
+.stat-val.neg{color:var(--red)}
+.stat-val.gold{color:var(--accent)}
+
+/* TRADE CARD */
+.trade-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:10px;transition:border-color .18s}
+.trade-card:hover{border-color:var(--border2)}
+.trade-top{display:flex;align-items:center;gap:10px;margin-bottom:.75rem}
+.trade-pnl{margin-left:auto;text-align:right}
+.pnl-val{font-family:var(--mono);font-size:15px;font-weight:700}
+.pnl-pct{font-family:var(--mono);font-size:11px;margin-top:1px}
+.pnl-pos{color:var(--green)}
+.pnl-neg{color:var(--red)}
+.trade-rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:4px}
+.trow{font-size:12px;padding:4px 0}
+.trow-label{color:var(--muted);margin-bottom:1px}
+.trow-val{font-family:var(--mono);font-size:11px;color:var(--text)}
+
+/* MODAL */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:999;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px)}
+.modal-ov.open{display:flex}
+.modal-box{background:var(--surface);border:1px solid var(--border2);border-radius:14px;width:min(780px,100%);overflow:hidden}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;border-bottom:1px solid var(--border)}
+.modal-title{font-family:var(--mono);font-size:12px;font-weight:700}
+.modal-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:17px;padding:3px;border-radius:5px;transition:color .13s}
+.modal-close:hover{color:var(--text)}
+#chart-iframe{width:100%;height:450px;border:none;display:block}
+.modal-foot{padding:.5rem 1.2rem;font-size:10px;color:var(--muted);font-family:var(--mono);border-top:1px solid var(--border)}
+
+@media(max-width:600px){
+  header{padding:1rem}main{padding:1rem}
+  .grid{grid-template-columns:1fr}
+  #htime{display:none}.tabs{padding:0 1rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l3-4h10l3 4h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>
+      <circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/>
+    </svg>
+  </div>
+  <div>
+    <div class="htitle">ESCUELA LAUNCH</div>
+    <div class="hsub">Binance Launchpool Monitor</div>
+  </div>
+  <div class="hright">
+    <div class="live-pill"><span class="dot"></span>LIVE</div>
+    <div id="htime">—</div>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('monitor')">Monitor</div>
+  <div class="tab" onclick="switchTab('portfolio')">Paper Portfolio</div>
+</div>
+
+<main>
+  <!-- TAB MONITOR -->
+  <div class="tab-content active" id="tab-monitor">
+    <div class="sec-header" style="margin-top:.5rem">
+      <span class="sec-label">Nuevos lanzamientos</span>
+      <span class="sec-count" id="cnt-activos">0</span>
+    </div>
+    <div id="activos-wrap"><div class="empty"><div class="empty-ico">🚀</div>Cargando...</div></div>
+
+    <div class="sec-header">
+      <span class="sec-label">Historial</span>
+      <span class="sec-count" id="cnt-hist">0</span>
+    </div>
+    <div id="hist-wrap"><div class="empty"><div class="empty-ico">📋</div>Cargando...</div></div>
+
+    <div class="legend">
+      <div class="leg-title">Glosario</div>
+      <div class="leg-grid">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div><div><strong style="color:var(--text)">Active / Ongoing</strong> — podés lockear BNB ahora</div></div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div><div><strong style="color:var(--text)">Upcoming</strong> — anunciado, aún no empezó</div></div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--muted)"></div><div><strong style="color:var(--text)">Ended</strong> — terminó, distribución en proceso</div></div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--blue)"></div><div><strong style="color:var(--text)">Distributed</strong> — tokens enviados a holders de BNB</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB PORTFOLIO -->
+  <div class="tab-content" id="tab-portfolio">
+    <div id="portfolio-wrap" style="margin-top:.5rem">
+      <div class="empty"><div class="empty-ico">💼</div>Cargando portfolio...</div>
+    </div>
+  </div>
+</main>
+
+<!-- MODAL GRAFICO -->
+<div class="modal-ov" id="modal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <span class="modal-title" id="modal-title">Gráfico</span>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <iframe id="chart-iframe" src="about:blank"></iframe>
+    <div class="modal-foot">TradingView · sin API key · timezone: Buenos Aires</div>
+  </div>
+</div>
+
+<script>
+const PROJECTS_URL  = "https://raw.githubusercontent.com/clemenciorodriguez/escuelalaunch/main/data/projects.json";
+const PORTFOLIO_URL = "https://raw.githubusercontent.com/clemenciorodriguez/escuelalaunch/main/data/portfolio.json";
+
+// ── Tabs ─────────────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const names = ['monitor','portfolio'];
+    t.classList.toggle('active', names[i] === name);
+  });
+  document.querySelectorAll('.tab-content').forEach(c => {
+    c.classList.toggle('active', c.id === 'tab-'+name);
+  });
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function fmtNum(n) {
+  if (n >= 1e9) return (n/1e9).toFixed(1)+'B';
+  if (n >= 1e6) return (n/1e6).toFixed(1)+'M';
+  if (n >= 1e3) return (n/1e3).toFixed(0)+'K';
+  return Number(n).toFixed(0);
+}
+function fmtPrice(p) {
+  if (!p) return '—';
+  if (p < 0.0001) return p.toFixed(8);
+  if (p < 0.01)   return p.toFixed(6);
+  if (p < 1)      return p.toFixed(4);
+  return p.toFixed(2);
+}
+function statusCls(s) {
+  return {distributed:'s-dist',ended:'s-ended',active:'s-active',ongoing:'s-ongoing',upcoming:'s-upcoming'}[s]||'s-ended';
+}
+function statusLabel(s) {
+  return {distributed:'Distributed',ended:'Ended',active:'Active',ongoing:'Ongoing',upcoming:'Upcoming'}[s]||s;
+}
+function typeLabel(t) { return t==='launchpool'?'Launchpool':'HODLer Airdrop'; }
+function safeUrl(url) {
+  return (!url||url.includes('[domain]')) ? 'https://www.binance.com/en/launchpool' : url;
+}
+
+// ── Monitor cards ────────────────────────────────────────────────────────────
+function buildCard(p) {
+  const isHot = ['active','ongoing','upcoming'].includes(p.status);
+  const logo  = p.logo
+    ? `<img class="timg" src="${p.logo}" alt="${p.token}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="tfb" style="display:none">${p.token.slice(0,3)}</div>`
+    : `<div class="tfb">${p.token.slice(0,3)}</div>`;
+  const pools = p.pools.map(x=>`<span class="chip">${x}</span>`).join('');
+  return `<div class="card ${isHot?'hot':''}">
+    <div class="ctop">${logo}<div><div class="cname">${p.token}</div><div class="ctype">${typeLabel(p.type)}</div></div>
+    <span class="sbadge ${statusCls(p.status)}">${statusLabel(p.status)}</span></div>
+    <div class="crow"><span class="clabel">Total airdrop</span><span class="cval gold">${fmtNum(p.total_amount)} ${p.token}</span></div>
+    <div class="crow"><span class="clabel">Lockear</span><div class="pools">${pools}</div></div>
+    <div class="crow"><span class="clabel">Inicio</span><span class="cval">${p.start||'—'}</span></div>
+    <div class="crow"><span class="clabel">Fin</span><span class="cval">${p.end||'—'}</span></div>
+    <div class="cbtns">
+      <span class="btn btn-chart" onclick="openChart('${p.token}')">Ver gráfico</span>
+      <a class="btn btn-ann" href="${safeUrl(p.url)}" target="_blank" rel="noopener">Anuncio ↗</a>
+    </div>
+  </div>`;
+}
+
+// ── Portfolio ────────────────────────────────────────────────────────────────
+function buildPortfolio(data) {
+  const trades   = data.trades || [];
+  const open     = trades.filter(t => t.status === 'open');
+  const totalPnl = data.total_pnl || 0;
+  const pnlPct   = data.total_pnl_pct || 0;
+  const invested = data.total_invested || 0;
+
+  let html = `<div class="stats-row">
+    <div class="stat"><div class="stat-label">BALANCE USDT</div><div class="stat-val gold">$${Number(data.balance_usdt||0).toFixed(2)}</div></div>
+    <div class="stat"><div class="stat-label">INVERTIDO</div><div class="stat-val">$${Number(invested).toFixed(2)}</div></div>
+    <div class="stat"><div class="stat-label">P&amp;L TOTAL</div><div class="stat-val ${totalPnl>=0?'pos':'neg'}">${totalPnl>=0?'+':''}$${Math.abs(totalPnl).toFixed(2)}</div></div>
+    <div class="stat"><div class="stat-label">RENDIMIENTO</div><div class="stat-val ${pnlPct>=0?'pos':'neg'}">${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%</div></div>
+    <div class="stat"><div class="stat-label">TRADES</div><div class="stat-val">${trades.length}</div></div>
+  </div>`;
+
+  if (open.length === 0 && trades.length === 0) {
+    html += `<div class="empty"><div class="empty-ico">💼</div>
+      Sin trades aún. El bot compra $5 ficticios en cada nuevo listing detectado.<br>
+      <small style="margin-top:.4rem;display:block">Balance inicial: $${data.initial_usdt || 100}</small>
+    </div>`;
+    return html;
+  }
+
+  if (open.length > 0) {
+    html += `<div class="sec-header"><span class="sec-label">Posiciones abiertas</span><span class="sec-count">${open.length}</span></div>`;
+    open.forEach(t => { html += buildTradeCard(t); });
+  }
+
+  const closed = trades.filter(t => t.status !== 'open');
+  if (closed.length > 0) {
+    html += `<div class="sec-header" style="margin-top:1.5rem"><span class="sec-label">Cerradas</span><span class="sec-count">${closed.length}</span></div>`;
+    closed.forEach(t => { html += buildTradeCard(t); });
+  }
+
+  html += `<p style="font-size:11px;color:var(--muted);font-family:var(--mono);text-align:right;margin-top:1rem">
+    Actualizado: ${data.last_updated||'—'} · cada 15 min
+  </p>`;
+
+  return html;
+}
+
+function buildTradeCard(t) {
+  const pnl    = t.pnl_usdt || 0;
+  const pnlPct = t.pnl_pct  || 0;
+  const isPos  = pnl >= 0;
+  const arrow  = isPos ? '▲' : '▼';
+  return `<div class="trade-card">
+    <div class="trade-top">
+      <div class="tfb">${t.token.slice(0,3)}</div>
+      <div><div class="cname">${t.token}</div><div class="ctype">${t.buy_time}</div></div>
+      <div class="trade-pnl">
+        <div class="pnl-val ${isPos?'pnl-pos':'pnl-neg'}">${isPos?'+':''}$${Math.abs(pnl).toFixed(4)}</div>
+        <div class="pnl-pct ${isPos?'pnl-pos':'pnl-neg'}">${arrow} ${Math.abs(pnlPct).toFixed(2)}%</div>
+      </div>
+    </div>
+    <div class="trade-rows">
+      <div class="trow"><div class="trow-label">Precio compra</div><div class="trow-val">$${fmtPrice(t.buy_price)}</div></div>
+      <div class="trow"><div class="trow-label">Precio actual</div><div class="trow-val">$${fmtPrice(t.current_price)}</div></div>
+      <div class="trow"><div class="trow-label">Cantidad</div><div class="trow-val">${Number(t.qty).toFixed(4)} ${t.token}</div></div>
+      <div class="trow"><div class="trow-label">Invertido</div><div class="trow-val">$${t.cost_usdt}</div></div>
+      <div class="trow"><div class="trow-label">Valor actual</div><div class="trow-val">$${Number(t.current_value||0).toFixed(4)}</div></div>
+      <div class="trow"><div class="trow-label">Actualizado</div><div class="trow-val">${t.last_updated||'—'}</div></div>
+    </div>
+    <div style="margin-top:.75rem">
+      <span class="btn btn-chart" onclick="openChart('${t.token}')" style="max-width:140px;display:inline-block">Ver gráfico</span>
+    </div>
+  </div>`;
+}
+
+// ── Chart modal ──────────────────────────────────────────────────────────────
+function openChart(token) {
+  const sym = `BINANCE:${token}USDT`;
+  const src = `https://s.tradingview.com/widgetembed/?symbol=${sym}&interval=D&theme=dark&style=1&locale=es&timezone=America%2FArgentina%2FBuenos_Aires&studies=RSI%40tv-basicstudies&hidesidetoolbar=0&withdateranges=1&saveimage=0`;
+  document.getElementById('modal-title').textContent = `${token} / USDT`;
+  document.getElementById('chart-iframe').src = src;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('chart-iframe').src = 'about:blank';
+}
+document.getElementById('modal').addEventListener('click', e => { if (e.target===document.getElementById('modal')) closeModal(); });
+
+// ── Load data ────────────────────────────────────────────────────────────────
+fetch(PROJECTS_URL)
+  .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(data => {
+    document.getElementById('htime').textContent = data.scraped_at;
+    const activos  = data.projects.filter(p => ['active','ongoing','upcoming'].includes(p.status));
+    const historial= data.projects.filter(p => ['ended','distributed'].includes(p.status));
+    document.getElementById('cnt-activos').textContent = activos.length;
+    document.getElementById('cnt-hist').textContent    = historial.length;
+    document.getElementById('activos-wrap').innerHTML  = activos.length
+      ? `<div class="grid">${activos.map(buildCard).join('')}</div>`
+      : `<div class="empty"><div class="empty-ico">🚀</div>Aún no hay lanzamientos activos. El monitor chequea cada 15 min.</div>`;
+    document.getElementById('hist-wrap').innerHTML = `<div class="grid">${historial.map(buildCard).join('')}</div>`;
+  })
+  .catch(e => {
+    document.getElementById('activos-wrap').innerHTML =
+      `<div class="empty"><div class="empty-ico">⚠</div>Error: ${e.message}</div>`;
+  });
+
+fetch(PORTFOLIO_URL)
+  .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(data => {
+    document.getElementById('portfolio-wrap').innerHTML = buildPortfolio(data);
+  })
+  .catch(() => {
+    document.getElementById('portfolio-wrap').innerHTML =
+      `<div class="empty"><div class="empty-ico">💼</div>Portfolio aún no inicializado.<br><small style="margin-top:.4rem;display:block">Se crea automáticamente cuando el bot detecte el primer listing.</small></div>`;
+  });
+</script>
+</body>
+</html>
