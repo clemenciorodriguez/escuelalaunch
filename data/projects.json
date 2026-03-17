@@ -1,0 +1,331 @@
+{
+  "scraped_at": "2026-03-17 19:19 UTC",
+  "count": 20,
+  "projects": [
+    {
+      "id": "holder_NIGHT",
+      "token": "NIGHT",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260311/fdf0fabf-1d3d-40d7-a746-ed728b712132.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 240000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2026-02-16 00:00 UTC",
+      "end": "2026-02-18 23:59 UTC",
+      "start_ms": 1771200000000,
+      "end_ms": 1771459199000,
+      "url": "https://www.binance.com/support/announcement/detail/e4af642d375846d793615f1a51f6ad77"
+    },
+    {
+      "id": "lpl_OPN",
+      "token": "OPN",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260302/63dfda99-87df-4055-80ee-1c0554e8e3d4.png",
+      "type": "launchpool",
+      "status": "ended",
+      "total_amount": 20000000.0,
+      "pools": [
+        "BNB",
+        "USDC",
+        "U",
+        "USD1"
+      ],
+      "start": "2026-03-03 00:00 UTC",
+      "end": "2026-03-05 00:00 UTC",
+      "start_ms": 1772496000000,
+      "end_ms": 1772668800000,
+      "url": "https://www.[domain]/[lang]/support/announcement/detail/d5810276f8c44fa7ade2b93746cd6a0a"
+    },
+    {
+      "id": "holder_BREV",
+      "token": "BREV",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260105/d537ea45-3e52-4964-a117-f32073b8e113.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 15000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-12-17 00:00 UTC",
+      "end": "2025-12-19 23:59 UTC",
+      "start_ms": 1765929600000,
+      "end_ms": 1766188799000,
+      "url": "https://www.binance.com/support/announcement/detail/59a69279ee4148d5b267934a92319d33"
+    },
+    {
+      "id": "holder_AT",
+      "token": "AT",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251127/c0bcb2f9-2567-4f16-87a2-b780f41df1ba.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 20000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-11-04 00:00 UTC",
+      "end": "2025-11-06 23:59 UTC",
+      "start_ms": 1762214400000,
+      "end_ms": 1762473599000,
+      "url": "https://www.binance.com/support/announcement/detail/b0c65316e2bc4878838852b16291d07b"
+    },
+    {
+      "id": "holder_ALLO",
+      "token": "ALLO",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251111/5bcc1193-9c95-4b3e-b13b-1f963f08e4c7.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 15000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-23 00:00 UTC",
+      "end": "2025-10-25 23:59 UTC",
+      "start_ms": 1761177600000,
+      "end_ms": 1761436799000,
+      "url": "https://www.binance.com/support/announcement/detail/ea6c4d237ad14eb38169221c01fbd992"
+    },
+    {
+      "id": "holder_SAPIEN",
+      "token": "SAPIEN",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251106/d0340fab-ddab-43fd-b575-785d3b8dffa5.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 15000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-20 00:00 UTC",
+      "end": "2025-10-22 23:59 UTC",
+      "start_ms": 1760918400000,
+      "end_ms": 1761177599000,
+      "url": "https://www.binance.com/support/announcement/detail/55ba4e6b3da34b50a637a6000a13a46b"
+    },
+    {
+      "id": "holder_MMT",
+      "token": "MMT",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251103/1a90a0e8-d23a-437b-8460-96efc4de02ca.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 7500000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-17 00:00 UTC",
+      "end": "2025-10-19 23:59 UTC",
+      "start_ms": 1760659200000,
+      "end_ms": 1760918399000,
+      "url": "https://www.binance.com/support/announcement/105591654043469c97c4d545cbed182e"
+    },
+    {
+      "id": "lpl_KITE",
+      "token": "KITE",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251031/567a56ec-3396-4a12-8eae-06af955d4a9c.png",
+      "type": "launchpool",
+      "status": "ended",
+      "total_amount": 150000000.0,
+      "pools": [
+        "BNB",
+        "FDUSD",
+        "USDC"
+      ],
+      "start": "2025-11-01 00:00 UTC",
+      "end": "2025-11-03 00:00 UTC",
+      "start_ms": 1761955200000,
+      "end_ms": 1762128000000,
+      "url": "https://www.[domain]/[lang]/support/announcement/detail/48da65d095eb44e093d856948552c402"
+    },
+    {
+      "id": "holder_TURTLE",
+      "token": "TURTLE",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251021/5a93ef9b-df9b-407a-a393-2c1cdc800414.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 10000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-14 00:00 UTC",
+      "end": "2025-10-16 23:59 UTC",
+      "start_ms": 1760400000000,
+      "end_ms": 1760659199000,
+      "url": "https://www.binance.com/support/announcement/detail/d5e4381605934bb98919bf542d3d6afe"
+    },
+    {
+      "id": "holder_ZBT",
+      "token": "ZBT",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251017/e2a534bd-7ea7-4371-ab6f-3d67f9114292.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 15000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-11 00:00 UTC",
+      "end": "2025-10-13 23:59 UTC",
+      "start_ms": 1760140800000,
+      "end_ms": 1760399999000,
+      "url": "https://www.binance.com/support/announcement/detail/a6d3aaf1f6af443fb99386104551f5ad"
+    },
+    {
+      "id": "holder_YB",
+      "token": "YB",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251015/69294b89-6225-4b29-b03f-6b5ac1563cfc.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 10000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-09 00:00 UTC",
+      "end": "2025-10-11 23:59 UTC",
+      "start_ms": 1759968000000,
+      "end_ms": 1760227199000,
+      "url": "https://www.binance.com/support/announcement/detail/8b48c0db0eeb472ab0314377938af2dc"
+    },
+    {
+      "id": "holder_ENSO",
+      "token": "ENSO",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251014/e760aa42-9bd3-4e26-8de7-edfbde47b894.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 1750000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-07 00:00 UTC",
+      "end": "2025-10-09 23:59 UTC",
+      "start_ms": 1759795200000,
+      "end_ms": 1760054399000,
+      "url": "https://www.binance.com/support/announcement/detail/79ea046281db4d478a5f95049bd6546b"
+    },
+    {
+      "id": "holder_EUL",
+      "token": "EUL",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251013/880d28b2-8d02-4197-bb09-d14e8422db8a.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 543657.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-04 00:00 UTC",
+      "end": "2025-10-06 23:59 UTC",
+      "start_ms": 1759536000000,
+      "end_ms": 1759795199000,
+      "url": "https://www.binance.com/support/announcement/detail/7d38f20e2d1e456dba84352d9284699e"
+    },
+    {
+      "id": "holder_WAL",
+      "token": "WAL",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251010/43069e8e-348b-4671-9a26-31dd49ea4ab3.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 32500000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-10-01 00:00 UTC",
+      "end": "2025-10-03 23:59 UTC",
+      "start_ms": 1759276800000,
+      "end_ms": 1759535999000,
+      "url": "https://www.binance.com/support/announcement/detail/0c86561f0863419ca441b2a4c96e790d"
+    },
+    {
+      "id": "holder_MORPHO",
+      "token": "MORPHO",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251003/604b04b1-338d-4ffa-8d85-a2777922ad8b.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 6500000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-09-28 00:00 UTC",
+      "end": "2025-09-30 23:59 UTC",
+      "start_ms": 1759017600000,
+      "end_ms": 1759276799000,
+      "url": "https://www.binance.com/support/announcement/d625623188cf455ea2fea7cc48dcabfb"
+    },
+    {
+      "id": "holder_2Z",
+      "token": "2Z",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251002/8f2aca8f-1556-4a0a-a1cf-db12cc3256ee.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 35000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-09-26 00:00 UTC",
+      "end": "2025-09-28 23:59 UTC",
+      "start_ms": 1758844800000,
+      "end_ms": 1759103999000,
+      "url": "https://www.binance.com/support/announcement/detail/ce383a4cd22743109da5c7f050457089"
+    },
+    {
+      "id": "holder_EDEN",
+      "token": "EDEN",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20250929/242eaa82-e036-49a7-8a74-f420f4134588.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 15000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-09-23 00:00 UTC",
+      "end": "2025-09-25 23:59 UTC",
+      "start_ms": 1758585600000,
+      "end_ms": 1758844799000,
+      "url": "https://www.binance.com/support/announcement/detail/feec6071453d4433bf251e8e17438c7c"
+    },
+    {
+      "id": "holder_FF",
+      "token": "FF",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20250926/c67418dc-f4d4-4790-999b-c3b3499bc617.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 150000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-09-14 00:00 UTC",
+      "end": "2025-09-16 23:59 UTC",
+      "start_ms": 1757808000000,
+      "end_ms": 1758067199000,
+      "url": "https://www.binance.com/support/announcement/91b1298d151a4803b99720518751a95b"
+    },
+    {
+      "id": "holder_MIRA",
+      "token": "MIRA",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20250925/89ca5ab9-2e89-4e68-9770-c62273d91ba1.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 20000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-09-20 00:00 UTC",
+      "end": "2025-09-22 23:59 UTC",
+      "start_ms": 1758326400000,
+      "end_ms": 1758585599000,
+      "url": "https://www.binance.com/support/announcement/detail/149617ae89a64ca4ac71ed2d296ab4e6"
+    },
+    {
+      "id": "holder_XPL",
+      "token": "XPL",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20250924/91fe7e8d-8896-473f-96b9-d7e6e11b1912.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 75000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2025-09-10 00:00 UTC",
+      "end": "2025-09-13 23:59 UTC",
+      "start_ms": 1757462400000,
+      "end_ms": 1757807999000,
+      "url": "https://www.binance.com/support/announcement/detail/b00f28d55c924614b1953484c64dd6f9"
+    }
+  ]
+}
