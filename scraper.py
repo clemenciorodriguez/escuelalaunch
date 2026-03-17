@@ -1,13 +1,7 @@
 """
 Binance Launchpool Scraper
-Obtiene todos los proyectos y los envia a un endpoint PHP.
-
-Uso:
-    python scraper.py              -> imprime JSON en consola
-    python scraper.py --send       -> imprime + envia al endpoint PHP
-
-El front-end se encarga de separar por status:
-    active / upcoming / ongoing / ended / distributed
+Obtiene todos los proyectos y guarda en data/projects.json
+GitHub Actions hace el commit automaticamente cada 15 minutos.
 """
 
 import json
@@ -16,13 +10,13 @@ import ssl
 import sys
 import urllib.request
 from datetime import datetime
+from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
 API_URL = "https://www.binance.com/bapi/apex/v1/friendly/apex/web/launchpool/holder/project"
 
-# Lee desde variable de entorno (GitHub Secret) o hardcodeado como fallback
-PHP_ENDPOINT = os.environ.get("PHP_ENDPOINT", "https://tu-servidor.com/receiver.php")
+OUTPUT_FILE = Path("data/projects.json")
 
 HEADERS = {
     "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36",
@@ -55,7 +49,7 @@ def fetch_projects(page=1, size=20):
     for row in rows:
         token  = row.get("rebateCoin", "—")
         status = row.get("status", "—").lower()
-        ptype  = row.get("projectType", "—")   # "lpl" o "holder"
+        ptype  = row.get("projectType", "—")
         total  = row.get("rebateTotalAmount", 0)
         logo   = row.get("rebateCoinLogo", "")
 
@@ -107,33 +101,22 @@ def _ts(ms):
     except Exception:
         return None
 
-# ── Send to PHP ───────────────────────────────────────────────────────────────
+# ── Guardar JSON ──────────────────────────────────────────────────────────────
 
-def send_to_php(projects):
-    if not PHP_ENDPOINT or PHP_ENDPOINT == "https://tu-servidor.com/receiver.php":
-        print("[!] PHP_ENDPOINT no configurado — saltando envio.")
-        return
+def save_json(projects):
+    OUTPUT_FILE.parent.mkdir(exist_ok=True)
 
-    payload = json.dumps({
+    output = {
         "scraped_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
         "count":      len(projects),
         "projects":   projects,
-    }, ensure_ascii=False).encode("utf-8")
-
-    headers = {
-        "Content-Type": "application/json",
-        "User-Agent":   "BinanceMonitor/1.0",
     }
 
-    req = urllib.request.Request(PHP_ENDPOINT, data=payload, headers=headers, method="POST")
-
-    try:
-        with urllib.request.urlopen(req, context=SSL_CTX, timeout=15) as resp:
-            body = resp.read().decode("utf-8")
-        print(f"[PHP] {resp.status} — {body[:300]}")
-    except Exception as e:
-        print(f"[PHP] Error: {e}")
-        sys.exit(1)
+    OUTPUT_FILE.write_text(
+        json.dumps(output, indent=2, ensure_ascii=False),
+        encoding="utf-8"
+    )
+    print(f"[OK] Guardado en {OUTPUT_FILE}")
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
@@ -152,12 +135,7 @@ def main():
         pools_str = " · ".join(p["pools"]) if p["pools"] else "—"
         print(f"  [{p['status']:12}] {p['token']:10} | {p['type']:14} | pools: {pools_str}")
 
-    if "--send" in sys.argv:
-        print(f"\n[->] Enviando {len(projects)} proyectos a PHP...")
-        send_to_php(projects)
-    else:
-        print("\n── JSON completo ──")
-        print(json.dumps(projects, indent=2, ensure_ascii=False))
+    save_json(projects)
 
 if __name__ == "__main__":
     main()
