@@ -1,7 +1,23 @@
 {
-  "scraped_at": "2026-03-18 03:48 UTC",
+  "scraped_at": "2026-03-18 05:20 UTC",
   "count": 20,
   "projects": [
+    {
+      "id": "holder_ROBO",
+      "token": "ROBO",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260318/94b1bdca-037e-469e-8056-4631bbd3c7fb.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 100000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2026-03-04 00:00 UTC",
+      "end": "2026-03-06 23:59 UTC",
+      "start_ms": 1772582400000,
+      "end_ms": 1772841599000,
+      "url": "https://www.binance.com/support/announcement/detail/20ac487755434d559568552e9812cbf0"
+    },
     {
       "id": "holder_NIGHT",
       "token": "NIGHT",
@@ -310,22 +326,6 @@
       "start_ms": 1758326400000,
       "end_ms": 1758585599000,
       "url": "https://www.binance.com/support/announcement/detail/149617ae89a64ca4ac71ed2d296ab4e6"
-    },
-    {
-      "id": "holder_XPL",
-      "token": "XPL",
-      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20250924/91fe7e8d-8896-473f-96b9-d7e6e11b1912.png",
-      "type": "hodler_airdrop",
-      "status": "distributed",
-      "total_amount": 75000000.0,
-      "pools": [
-        "BNB"
-      ],
-      "start": "2025-09-10 00:00 UTC",
-      "end": "2025-09-13 23:59 UTC",
-      "start_ms": 1757462400000,
-      "end_ms": 1757807999000,
-      "url": "https://www.binance.com/support/announcement/detail/b00f28d55c924614b1953484c64dd6f9"
     }
   ]
 }
