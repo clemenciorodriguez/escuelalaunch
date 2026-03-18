@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-03-18 05:20 UTC",
+  "scraped_at": "2026-03-18 06:36 UTC",
   "count": 20,
   "projects": [
     {
@@ -21,7 +21,7 @@
     {
       "id": "holder_NIGHT",
       "token": "NIGHT",
-      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260311/fdf0fabf-1d3d-40d7-a746-ed728b712132.png",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260318/04f36fc6-8db1-4758-9315-9b7876a50eab.png",
       "type": "hodler_airdrop",
       "status": "distributed",
       "total_amount": 240000000.0,
