@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-04-28 09:37 UTC",
+  "scraped_at": "2026-04-28 11:24 UTC",
   "count": 20,
   "projects": [
     {
@@ -7,7 +7,7 @@
       "token": "CHIP",
       "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260428/d60d9558-1daa-4ca9-9392-16c383457607.png",
       "type": "hodler_airdrop",
-      "status": "in_calculation",
+      "status": "distributed",
       "total_amount": 25000000.0,
       "pools": [
         "BNB"
