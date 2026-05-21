@@ -1,7 +1,23 @@
 {
-  "scraped_at": "2026-05-21 10:23 UTC",
+  "scraped_at": "2026-05-21 13:39 UTC",
   "count": 20,
   "projects": [
+    {
+      "id": "holder_AIGENSYN",
+      "token": "AIGENSYN",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260521/a04a410d-6d5c-4a14-b0a1-2f00c665fe5e.png",
+      "type": "hodler_airdrop",
+      "status": "distributed",
+      "total_amount": 100000000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2026-05-04 00:00 UTC",
+      "end": "2026-05-06 23:59 UTC",
+      "start_ms": 1777852800000,
+      "end_ms": 1778111999000,
+      "url": "https://www.binance.com/support/announcement/detail/8c6cfaeddbd04f1595f658ac1dfbd0e7"
+    },
     {
       "id": "holder_CHIP",
       "token": "CHIP",
@@ -310,22 +326,6 @@
       "start_ms": 1758585600000,
       "end_ms": 1758844799000,
       "url": "https://www.binance.com/support/announcement/detail/feec6071453d4433bf251e8e17438c7c"
-    },
-    {
-      "id": "holder_FF",
-      "token": "FF",
-      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20250926/c67418dc-f4d4-4790-999b-c3b3499bc617.png",
-      "type": "hodler_airdrop",
-      "status": "distributed",
-      "total_amount": 150000000.0,
-      "pools": [
-        "BNB"
-      ],
-      "start": "2025-09-14 00:00 UTC",
-      "end": "2025-09-16 23:59 UTC",
-      "start_ms": 1757808000000,
-      "end_ms": 1758067199000,
-      "url": "https://www.binance.com/support/announcement/91b1298d151a4803b99720518751a95b"
     }
   ]
 }
