@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-06-30 05:44 UTC",
+  "scraped_at": "2026-06-30 08:44 UTC",
   "count": 20,
   "projects": [
     {
@@ -7,7 +7,7 @@
       "token": "OPG",
       "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260630/4dcf0517-0244-43be-9b06-3b80afa37ce1.png",
       "type": "hodler_airdrop",
-      "status": "in_calculation",
+      "status": "distributed",
       "total_amount": 6400000.0,
       "pools": [
         "BNB"
