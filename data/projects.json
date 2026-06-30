@@ -1,7 +1,23 @@
 {
-  "scraped_at": "2026-06-30 01:29 UTC",
+  "scraped_at": "2026-06-30 05:44 UTC",
   "count": 20,
   "projects": [
+    {
+      "id": "holder_OPG",
+      "token": "OPG",
+      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20260630/4dcf0517-0244-43be-9b06-3b80afa37ce1.png",
+      "type": "hodler_airdrop",
+      "status": "in_calculation",
+      "total_amount": 6400000.0,
+      "pools": [
+        "BNB"
+      ],
+      "start": "2026-06-22 00:00 UTC",
+      "end": "2026-06-24 23:59 UTC",
+      "start_ms": 1782086400000,
+      "end_ms": 1782345599000,
+      "url": "https://www.binance.com/support/announcement/detail/b026c9829d28459cb1f1a95000960a08"
+    },
     {
       "id": "holder_GENIUS",
       "token": "GENIUS",
@@ -310,22 +326,6 @@
       "start_ms": 1759017600000,
       "end_ms": 1759276799000,
       "url": "https://www.binance.com/support/announcement/d625623188cf455ea2fea7cc48dcabfb"
-    },
-    {
-      "id": "holder_2Z",
-      "token": "2Z",
-      "logo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20251002/8f2aca8f-1556-4a0a-a1cf-db12cc3256ee.png",
-      "type": "hodler_airdrop",
-      "status": "distributed",
-      "total_amount": 35000000.0,
-      "pools": [
-        "BNB"
-      ],
-      "start": "2025-09-26 00:00 UTC",
-      "end": "2025-09-28 23:59 UTC",
-      "start_ms": 1758844800000,
-      "end_ms": 1759103999000,
-      "url": "https://www.binance.com/support/announcement/detail/ce383a4cd22743109da5c7f050457089"
     }
   ]
 }
